@@ -6,5 +6,5 @@ CustomError
 var CustomError = require('CustomError');
 var RhinoError = CustomError("RhinoError"); //input Error Name
 
-throw new RhinoError(""); //input Message
+throw new RhinoError("exampleError"); //input Message
 ```
