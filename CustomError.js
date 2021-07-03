@@ -1,19 +1,17 @@
 'use strict';
 
-function CustomError(ErrorName) {
-    var errForm = (Message) => {
-        this.message = Message
+module.exports = /** @class */ function (ErrorName) {
+    function errForm(message) {
+        this.message = message;
     }
-    function CE(message) {
+    function CustomErrorType(message) {
         Error.captureStackTrace(this, this.constructor);
         this.message = message;
-        errForm && errForm.call(this, arguments);
+        errForm && errForm.call(this, arguments[0]);
     }
 
-    CE.prototype = new Error();
-    CE.prototype.name = ErrorName;
-    CE.prototype.constructor = CE;
-    return CE;
+    CustomErrorType.prototype = new Error();
+    CustomErrorType.prototype.name = ErrorName;
+    CustomErrorType.prototype.constructor = CustomErrorType;
+    return CustomErrorType;
 }
-
-module.exports = CustomError;
